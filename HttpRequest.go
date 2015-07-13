@@ -57,7 +57,6 @@ func readHeaders(r *bufio.Reader) (HttpHeaders, error) {
 
 func readBody(headers map[string]string, r *bufio.Reader) ([]byte, error) {
 	length_str, ok := headers["Content-length"]
-	fmt.Println("Content length: ", length_str)
 	if !ok {
 		length_str = "0"
 	}

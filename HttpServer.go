@@ -25,7 +25,7 @@ func (s *HttpServer) handleConnection(c net.Conn) {
 		request, err := ParseRequest(c)
 		if err != nil {
 			// Send a closing message?
-			fmt.Println("Failed to parse request", err)
+			fmt.Println("Failed to parse request: ", err)
 			break
 		}
 		fmt.Println(request.String())
@@ -34,7 +34,7 @@ func (s *HttpServer) handleConnection(c net.Conn) {
 			send404(c)
 		}
 		err = handler.Handle(request, c)
-		fmt.Printf("Dispatched to %v", handler.String())
+		fmt.Printf("Dispatched to %v\n", handler.String())
 		if err != nil {
 			fmt.Println("Failed to dispatch")
 			break
