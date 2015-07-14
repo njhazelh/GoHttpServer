@@ -44,13 +44,6 @@ func (s *HttpServer) handleConnection(c net.Conn) {
 	fmt.Println("Terminating Connection")
 }
 
-func send404(c net.Conn) {
-	msg := "HTTP/1.1 404 Not Found\r\n"
-	msg += "Content-length: 0\r\n"
-	msg += "\r\n"
-	fmt.Fprint(c, msg)
-}
-
 func (s *HttpServer) Run(source string) {
 	ln, err := net.Listen("tcp", source)
 	if err != nil {
