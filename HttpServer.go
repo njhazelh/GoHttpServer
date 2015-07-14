@@ -30,11 +30,12 @@ func (s *HttpServer) handleConnection(c net.Conn) {
 		}
 		fmt.Println(request.String())
 		handler, ok := s.Handlers[request.status.uri]
-		if !ok {
-			send404(c)
+		response := NewResponse()
+		if ok {
+			handler.Handle(request, response)
 		}
-		err = handler.Handle(request, c)
-		fmt.Printf("Dispatched to %v\n", handler.String())
+		fmt.Println(response)
+		fmt.Fprint(c, response)
 		if err != nil {
 			fmt.Println("Failed to dispatch")
 			break
