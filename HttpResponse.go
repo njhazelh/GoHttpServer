@@ -32,6 +32,7 @@ func NewResponse() *HttpResponse {
 }
 
 // Set the statusMsg and statusCode of the HttpResponse
+// See Constants.go for list of statuses.
 // name: The statusMsg to set to. Case matters.
 func (r *HttpResponse) SetStatus(name string) error {
 	code, ok := HTTP_STATUS[name]
